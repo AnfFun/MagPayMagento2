@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Product list layout
+ *
+ * @category  GingerPay
+ * @package   GingerPay_Payment
+ * @author    Developer
+ * @copyright Copyright (c) 2023 GingerPay
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>GingerPay Products</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="GingerPay\Payment\Block\Product\ProductList" name="ginger.product.list" template="GingerPay_Payment::product/list.phtml" />
+        </referenceContainer>
+    </body>
+</page>

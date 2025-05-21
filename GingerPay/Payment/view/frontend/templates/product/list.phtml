@@ -1,0 +1,50 @@
+<?php
+/**
+ * Product list template
+ *
+ * @var \GingerPay\Payment\Block\Product\ProductList $block
+ */
+?>
+<div class="gingerpay-product-list">
+    <h1><?= $block->escapeHtml(__('GingerPay Products')) ?></h1>
+    
+    <?php $productCollection = $block->getProductCollection(); ?>
+    
+    <?php if ($productCollection && $productCollection->getSize()): ?>
+        <div class="table-wrapper">
+            <table class="data table" id="gingerpay-product-table">
+                <caption class="table-caption"><?= $block->escapeHtml(__('GingerPay Products')) ?></caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col id"><?= $block->escapeHtml(__('ID')) ?></th>
+                        <th scope="col" class="col name"><?= $block->escapeHtml(__('Name')) ?></th>
+                        <th scope="col" class="col price"><?= $block->escapeHtml(__('Price')) ?></th>
+                        <th scope="col" class="col description"><?= $block->escapeHtml(__('Description')) ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($productCollection as $product): ?>
+                        <tr>
+                            <td data-th="<?= $block->escapeHtml(__('ID')) ?>" class="col id">
+                                <?= $block->escapeHtml($product->getId()) ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtml(__('Name')) ?>" class="col name">
+                                <?= $block->escapeHtml($product->getName()) ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtml(__('Price')) ?>" class="col price">
+                                <?= $block->escapeHtml($block->getFormattedPrice($product->getPrice())) ?>
+                            </td>
+                            <td data-th="<?= $block->escapeHtml(__('Description')) ?>" class="col description">
+                                <?= $block->escapeHtml($product->getDescription()) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <div class="message info empty">
+            <span><?= $block->escapeHtml(__('No products found.')) ?></span>
+        </div>
+    <?php endif; ?>
+</div>

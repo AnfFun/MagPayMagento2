@@ -1,0 +1,146 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="27.0.6">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Payment Flow">
+    <mxGraphModel dx="1826" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#FFFFFF)" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="customer" value="Customer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;strokeColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="4" y="55" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="checkout" value="&lt;font style=&quot;&quot;&gt;Checkout&lt;/font&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#FFFFFF);strokeColor=light-dark(#000000,#000000);fillStyle=auto;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="150" y="40" width="100" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="paymentLibrary" value="PaymentLibrary" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#FFFFFF);gradientColor=none;fontColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="300" y="40" width="100" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="serviceOrderBuilder" value="ServiceOrderBuilder" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=light-dark(#000000,#000000);fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#FFFFFF);" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="450" y="40" width="120" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="apiBuilder" value="ApiBuilder" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=light-dark(#000000,#000000);fontColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#FFFFFF);" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="600" y="40" width="100" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="gingerAPI" value="Ginger API" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#FFFFFF);fontColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="750" y="40" width="100" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="webhook" value="Webhook" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;strokeColor=light-dark(#000000,#000000);fillColor=light-dark(#FFFFFF,#FFFFFF);fontColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="900" y="40" width="100" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="step1" value="&lt;span&gt;Select payment method&lt;/span&gt;" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);rounded=0;curved=0;labelBackgroundColor=none;fontColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" target="checkout" edge="1">
+          <mxGeometry x="-0.0084" y="-20" relative="1" as="geometry">
+            <mxPoint x="20" y="92" as="sourcePoint" />
+            <mxPoint x="147" y="150" as="targetPoint" />
+            <Array as="points" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step2" value="redirect()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);fontColor=light-dark(#000000,#000000);labelBackgroundColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="150" as="sourcePoint" />
+            <mxPoint x="350" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step3" value="prepareTransaction()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);fontColor=light-dark(#000000,#000000);labelBackgroundColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="180" as="sourcePoint" />
+            <mxPoint x="510" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step4" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;collectDataForOrder()&lt;/font&gt;" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);labelBackgroundColor=none;rounded=0;curved=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry x="-0.5555" relative="1" as="geometry">
+            <mxPoint x="510" y="210" as="sourcePoint" />
+            <mxPoint x="510" y="240" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="625" y="209" />
+              <mxPoint x="625" y="240" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step5" value="loadGingerClient()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);labelBackgroundColor=none;fontColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry x="-0.3867" relative="1" as="geometry">
+            <mxPoint x="350" y="270" as="sourcePoint" />
+            <mxPoint x="650" y="270" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step6" value="get()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);labelBackgroundColor=none;fontColor=light-dark(#000000,#000000);rounded=0;curved=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry x="-0.5673" y="2" relative="1" as="geometry">
+            <mxPoint x="650" y="300" as="sourcePoint" />
+            <mxPoint x="650" y="330" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="739" y="300" />
+              <mxPoint x="739" y="330" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step7" value="createOrder()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);labelBackgroundColor=none;fontColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="360" as="sourcePoint" />
+            <mxPoint x="800" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step8" value="Return transaction" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;strokeColor=light-dark(#000000,#000000);fontColor=light-dark(#000000,#000000);labelBackgroundColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="390" as="sourcePoint" />
+            <mxPoint x="350" y="390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step9" value="processRequest()" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);labelBackgroundColor=none;fontColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry x="0.2413" y="2" relative="1" as="geometry">
+            <mxPoint x="350" y="420" as="sourcePoint" />
+            <mxPoint x="951" y="420" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step10" value="Return redirect URL" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;strokeColor=light-dark(#000000,#000000);labelBackgroundColor=none;fontColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1" source="webhook">
+          <mxGeometry x="0.206" y="-1" relative="1" as="geometry">
+            <mxPoint x="1110" y="450" as="sourcePoint" />
+            <mxPoint x="350" y="450" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step11" value="Redirect to payment page" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;strokeColor=light-dark(#000000,#000000);fontColor=light-dark(#000000,#000000);labelBackgroundColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry x="-0.4807" relative="1" as="geometry">
+            <mxPoint x="350" y="480" as="sourcePoint" />
+            <mxPoint x="22" y="480" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step12" value="Complete payment" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);fontColor=light-dark(#000000,#000000);labelBackgroundColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry x="0.0003" relative="1" as="geometry">
+            <mxPoint x="24" y="512" as="sourcePoint" />
+            <mxPoint x="800" y="510" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step13" value="Send webhook" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);fontColor=light-dark(#000000,#000000);labelBackgroundColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry x="0.0027" relative="1" as="geometry">
+            <mxPoint x="800" y="540" as="sourcePoint" />
+            <mxPoint x="950" y="540" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="step14" value="&lt;span&gt;processTransaction()&lt;/span&gt;" style="html=1;verticalAlign=bottom;endArrow=block;strokeColor=light-dark(#000000,#000000);labelBackgroundColor=none;fontColor=light-dark(#000000,#000000);" parent="WIyWlLk6GJQsqaUBKTNV-1" edge="1">
+          <mxGeometry x="-0.2667" y="-1" relative="1" as="geometry">
+            <mxPoint x="950" y="570" as="sourcePoint" />
+            <mxPoint x="350" y="570" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="offvGPXBsJlxuw8HVkSC-6" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="284" y="404" as="sourcePoint" />
+            <mxPoint x="334" y="354" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="offvGPXBsJlxuw8HVkSC-7" value="" style="endArrow=none;dashed=1;html=1;rounded=0;fontColor=light-dark(#000000,#000000);strokeColor=light-dark(#000000,#000000);entryX=0.5;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="customer">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="25" y="642" as="sourcePoint" />
+            <mxPoint x="-64" y="293" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

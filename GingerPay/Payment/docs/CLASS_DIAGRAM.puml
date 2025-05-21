@@ -1,0 +1,157 @@
+@startuml GingerPay Payment Plugin Class Diagram
+
+' Abstract classes
+abstract class AbstractMethod {
+  # _code: string
+  # _infoBlockType: string
+  + initialize(paymentAction, stateObject)
+  + isAvailable(quote): bool
+  + refund(payment, amount)
+}
+
+abstract class PaymentLibrary extends AbstractMethod {
+  + processTransaction(transactionId, type): array
+  + loadGingerClient(storeId, testApiKey)
+  + prepareTransaction(order, platformCode, methodCode): array
+  + getReturnUrl()
+  + getWebhookUrl()
+  + processRequest(order, transaction, testModus)
+}
+
+abstract class AbstractPayment extends PaymentLibrary {
+  + startTransaction(order): array
+  + isAvailable(quote): bool
+  + getTestApiKey(method, testModus, storeId)
+  + capturing(method, order): self
+  + voiding(method, order): self
+  + refundFunctionality(method, payment, amount)
+}
+
+class PaymentLibraryRedefiner extends AbstractPayment {
+  ' Redefines some methods from PaymentLibrary
+}
+
+' Concrete payment methods
+class Afterpay extends PaymentLibraryRedefiner {
+  + {static} TERMS_NL_URL: string
+  + {static} TERMS_BE_URL: string
+  + {static} METHOD_CODE: string
+  + method_code: string
+  + platform_code: string
+  + assignData(data)
+  + captureOrder(order)
+  + refund(payment, amount)
+}
+
+class KlarnaPayLater extends PaymentLibraryRedefiner {
+  + {static} METHOD_CODE: string
+  + method_code: string
+  + platform_code: string
+  + assignData(data)
+  + captureOrder(order)
+  + refund(payment, amount)
+}
+
+class KlarnaPayNow extends PaymentLibraryRedefiner {
+  + {static} METHOD_CODE: string
+  + method_code: string
+  + platform_code: string
+  + assignData(data)
+  + captureOrder(order)
+  + refund(payment, amount)
+}
+
+class Banktransfer extends PaymentLibraryRedefiner {
+  + {static} METHOD_CODE: string
+  + method_code: string
+  + platform_code: string
+  + assignData(data)
+  + captureOrder(order)
+  + refund(payment, amount)
+}
+
+class Creditcard extends PaymentLibraryRedefiner {
+  + {static} METHOD_CODE: string
+  + method_code: string
+  + platform_code: string
+  + assignData(data)
+  + captureOrder(order)
+  + refund(payment, amount)
+}
+
+' Builder classes
+class ApiBuilder {
+  # configRepository: ConfigRepository
+  # urlProvider: UrlProvider
+  # client: \Ginger\ApiClient
+  # apiKey: string
+  # endpoint: string
+  # ginger_lib
+  # urlBuilder: UrlInterface
+  + get(storeId, testApiKey)
+  + getReturnUrl()
+  + getWebhookUrl()
+  + getSuccessProcessUrl(transactionId): string
+  + getSuccessUrl()
+  + getEndPoint()
+}
+
+class ServiceOrderBuilder {
+  + cancel(order): bool
+  + get(order, method): array
+  + parseAddress(streetAddress): array
+  + getTransactions(platformCode, verifiedTermsOfService, methodCode)
+  + collectDataForOrder(order, methodCode, urlProvider, orderLines, paymentDetails, customerData)
+  + getClientLines()
+  + getUserAgent()
+  + getOrderByTransaction(transactionId)
+  + add(order, message, isCustomerNotified)
+  + sendInvoiceEmail(order)
+  + sendOrderEmail(order)
+  + updateStatus(order, status): OrderInterface
+}
+
+class TransactionBuilder {
+  + updateOrderTransaction(order, transaction, type): OrderInterface
+  + getMethodFromOrder(order)
+  + updateMailingAddress(order, method, transaction)
+  + captureOrderTransaction(order, transaction)
+  + processRequest(order, transaction, testModus): array
+  + processUpdate(transaction, order, type): array
+  + cancelled(order, type, customerMessage): array
+  + complete(transaction, order, type): array
+  + error(order, type, customerMessage): array
+  + expired(order, type, customerMessage): array
+  + processing(transaction, order, type): array
+  + unknown(order, type, status): array
+}
+
+' Controllers
+class Action {
+  + execute()
+}
+
+class Webhook extends Action {
+  - action: ActionRedefiner
+  - checkoutSession: Session
+  # resultFactory: ResultFactory
+  - paymentLibraryModel: PaymentLibraryModer
+  - filesystemDriver: FilesystemDriver
+  - configRepository: ConfigRepository
+  + execute()
+}
+
+class ControllerCheckoutActionRedefiner {
+  + configRepository: ConfigRepository
+  + paymentLibraryModel: PaymentLibraryModer
+  + webhook()
+}
+
+' Relationships
+PaymentLibrary --> ApiBuilder: uses
+PaymentLibrary --> ServiceOrderBuilder: uses
+PaymentLibrary --> TransactionBuilder: uses
+Webhook --> ControllerCheckoutActionRedefiner: uses
+Webhook --> PaymentLibrary: uses
+
+@enduml
