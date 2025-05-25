@@ -80,7 +80,7 @@ php bin/magento module:enable GingerPay_Payment
 ### Manual Installation
 
 1. Go to `app/code` folder 
-2. Unzip `nopayn.zip` attached to release 
+2. Unzip `gingerpay.zip` attached to release 
 3. After that run the Magento® upgrade and clean the caches:
 ```
 php bin/magento setup:upgrade
@@ -90,7 +90,7 @@ php bin/magento cache:clean
 ```
 php bin/magento setup:static-content:deploy
 ```
-5. After the installation: Go to your Magento® admin portal and open 'Stores' > 'Configuration' > 'Payment Methods' > 'NoPayn Payments'.
+5. After the installation: Go to your Magento® admin portal and open 'Stores' > 'Configuration' > 'Payment Methods' > 'MagPay Payments'.
 
 ## Configuration
 
